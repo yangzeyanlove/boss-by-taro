@@ -1,0 +1,37 @@
+{
+  "id": "4720565",
+  "name": "imitate-boss",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "模仿boss",
+  "glyphs": [
+    {
+      "icon_id": "7568832",
+      "name": "24gf-bubbleDots4",
+      "font_class": "24gf-bubbleDots4",
+      "unicode": "e959",
+      "unicode_decimal": 59737
+    },
+    {
+      "icon_id": "7874497",
+      "name": "找工作",
+      "font_class": "zhaogongzuo",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "18170155",
+      "name": "指南针,浏览器,指针",
+      "font_class": "compass-full",
+      "unicode": "e974",
+      "unicode_decimal": 59764
+    },
+    {
+      "icon_id": "40557806",
+      "name": "我的-面性",
+      "font_class": "wode-mianxing",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    }
+  ]
+}
