@@ -1,6 +1,6 @@
 // 主题配置
 export const themeConfig = {
-  primaryColor: '#17B3B3',
+  primaryColor: '#14B2B2',
   color: '#B8B8B8',
 };
 
@@ -49,5 +49,10 @@ export default defineAppConfig({
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
-  }
+  },
+  // 按需注入和用时注入，组件
+  usingComponents: {
+    // 'van-button': 'components/vant-weapp/button/index'
+  },
+  lazyCodeLoading: 'requiredComponents',
 });
