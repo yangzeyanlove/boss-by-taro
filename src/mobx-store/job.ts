@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from 'mobx';
+import Taro from "@tarojs/taro";
 import request from '../common/request';
 import { IJobInfo } from '../../types/job';
 
@@ -10,6 +11,10 @@ interface IJobListResponse {
   };
 }
 class JobStore {
+  // 头部透明度
+  headerOpacity: number = 0;
+  // 搜索条高度
+  searchBarHeight: number = 0;
   list: any[] = [];
   loading: boolean = false;
   refreshing: boolean = false;
@@ -17,6 +22,33 @@ class JobStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  // 随着页面滚动，头部的透明度变化
+  setHeaderOpacity() {
+    Taro.createSelectorQuery().select('#job-list-scroll-view').scrollOffset((rect: any) => {
+      // console.log('当前滚动位置:', rect);
+      const scrollTop = rect.scrollTop;
+      if (scrollTop < 5) {
+        this.headerOpacity = 0;
+        return;
+      }
+      if (scrollTop <= this.searchBarHeight) {
+        this.headerOpacity = Math.min(scrollTop / this.searchBarHeight, 1);
+        return;
+      }
+      this.headerOpacity = 1;
+    }).exec();
+  }
+
+  // 获取搜索条高度
+  setSearchBarHeight() {
+    Taro.createSelectorQuery().select('#job-list-search-bar').boundingClientRect((rect: any) => {
+      if (rect) {
+        console.log('节点高度:', rect);
+        this.searchBarHeight = rect.height;
+      }
+    }).exec();
   }
 
   async fetchData(isRefresh = false) {

@@ -1,6 +1,20 @@
 
 @import '../../styles/variables.less';
 
+.container{
+  display: flex;
+  flex: 1;
+  position: relative;
+  .holder {
+    opacity: 0;
+  }
+  .fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
 .title {
   height: 86rpx;
   line-height: 86rpx;
@@ -18,8 +32,7 @@
   background: linear-gradient(to bottom, #13ACA7, #EFF9F9);
 }
 .searchBar{
-  padding: 0 15rpx;
-  margin-top: 10rpx;
+  padding: 10rpx 15rpx 20rpx 15rpx;
 }
 .searchInput {
   position: relative;
@@ -40,7 +53,7 @@
   overflow: auto;
   border-radius: 25rpx;
   border: 1rpx solid #fff;
-  margin: 20rpx 15rpx 0 15rpx;
+  margin: 0 15rpx 0 15rpx;
   padding: 24rpx 0 18rpx 0;
   background: linear-gradient(to bottom, #DBF0EE, #F9FDFE);
   &::-webkit-scrollbar {
@@ -56,6 +69,29 @@
   .itemIcon{
     width: 80rpx;
     height: 80rpx;
+  }
+  .funcIcom{
+    // background-image: url('../../assets/images/job/1.png');
+    background-size: cover;
+    background-position: center center;
+    width: 100rpx;
+    height: 100rpx;
+    margin: 0 auto;
+    &.img1 {
+      background-image: url('../../assets/images/job/1.png');
+    }
+    &.img2 {
+      background-image: url('../../assets/images/job/2.png');
+    }
+    &.img3 {
+      background-image: url('../../assets/images/job/3.png');
+    }
+    &.img4 {
+      background-image: url('../../assets/images/job/4.png');
+    }
+    &.img5 {
+      background-image: url('../../assets/images/job/5.png');
+    }
   }
 }
 
