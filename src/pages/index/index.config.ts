@@ -1,3 +1,6 @@
 export default definePageConfig({
-  navigationBarTitleText: '首页'
-})
+  navigationBarTitleText: 'BOSS直聘',
+  navigationBarBackgroundColor: '#17B3B3',
+  navigationBarTextStyle: "black",
+  navigationStyle: "custom"
+});

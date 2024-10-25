@@ -1,0 +1,58 @@
+@import '../../styles/variables.less';
+
+.wrap {
+  background-color: #fff;
+  border-radius: 15rpx;
+  margin: 20rpx 18rpx 0 18rpx;
+  padding: 28rpx 24rpx;
+}
+
+.itemTop {
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+
+  .jobName{
+    flex: 1;
+    font-size: 36rpx;
+    font-weight: 500;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+  }
+  .salaryDesc {
+    flex-shrink: 1;
+    color: @primary-color;
+    font-size: 32rpx;
+    font-weight: 500,
+  }
+}
+.brand{
+  margin-top: 14rpx;
+  color: #616161;
+  font-size: 28rpx;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #858585;
+}
+.bottomLeft {
+  position: relative;
+  padding-left: 60rpx;
+  line-height: 45rpx;
+  color: #282828;
+}
+
+.avatar {
+  position: absolute;
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 45rpx;
+  left: 0;
+  top: 0;
+}
