@@ -52,7 +52,8 @@ export default defineAppConfig({
   },
   // 按需注入和用时注入，组件
   usingComponents: {
-    // 'van-button': 'components/vant-weapp/button/index'
+    'van-button': 'components/vant-weapp/button/index',
+    "van-loading": "components/vant-weapp/loading/index"
   },
   lazyCodeLoading: 'requiredComponents',
 });

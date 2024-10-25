@@ -36,7 +36,7 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
         pxtransform: {
           enable: true,
           config: {
-
+            selectorBlackList: [/van-/],  // van组件不转化
           }
         },
         cssModules: {
