@@ -1,20 +1,28 @@
 import React from "react";
 import { observer } from "mobx-react";
 import Taro from "@tarojs/taro";
-import { View, Text, Icon, Image } from "@tarojs/components";
+import { View, Text, Icon, Image, ScrollView } from "@tarojs/components";
 import JobItem from "../../components/job-item";
 import styles from "./index.module.less";
 import jobStore from "../../mobx-store/job";
 
-const data = Array.from({ length: 100 }, (_, index) => ({
-  id: index + 1, // 生成从1开始的唯一ID
-  title: `Title ${index + 1}`,
-}));
+// const data = Array.from({ length: 100 }, (_, index) => ({
+//   id: index + 1, // 生成从1开始的唯一ID
+//   title: `Title ${index + 1}`,
+// }));
 
-interface IHeaderProps {
-  safeHeight: number | undefined;
-}
-const Header: React.FC<IHeaderProps> = ({ safeHeight = 0 }) => {
+const Header: React.FC = () => {
+  const [safeHeight, setSafeHeight] = React.useState<number | undefined>(0);
+
+  React.useEffect(() => {
+    try {
+      const res = Taro.getSystemInfoSync();
+      setSafeHeight(res.statusBarHeight);
+    } catch (e) {
+      // Do something when catch error
+    }
+  });
+
   return (
     <View className={styles.header}>
       <View style={{ height: safeHeight }} />
@@ -27,7 +35,7 @@ const SearchBar: React.FC = () => {
   return (
     <View className={styles.searchBar}>
       <View className={styles.searchInput}>
-        <Icon className={styles.icon} type="search" size={14} />
+        <Icon className={styles.icon} type="search" size="14" />
         <Text className={styles.placeholder}>搜索职位名称、公司</Text>
       </View>
     </View>
@@ -84,32 +92,40 @@ const Filter: React.FC = () => {
 };
 
 const Index: React.FC = observer(() => {
-  const res: Taro.getSystemInfoSync.Result = Taro.getSystemInfoSync();
-  console.log("====>>>>", res);
+  // 滚动到底部加载更多
+  const loadMoreData = () => {
+    console.log("load more data....");
+    jobStore.fetchData();
+  };
 
   React.useEffect(() => {
     jobStore.fetchData();
   }, []);
 
   return (
-    <View
+    <ScrollView
+      scrollY
       className={styles.index}
-      style={{
-        background: "linear-gradient(to bottom, #13ACA7, #F5F5F5 300px)",
-      }}
+      lowerThreshold={60}
+      onScrollToLower={loadMoreData}
     >
-      {/* 顶部导航 */}
-      <Header safeHeight={res.statusBarHeight} />
-      {/* 搜索框 */}
-      <SearchBar />
-      {/* 功能按钮 */}
-      <TopFunction />
+      <View className={styles.topWrap}>
+        {/* 顶部导航 */}
+        <Header />
+        {/* 搜索框 */}
+        <SearchBar />
+        {/* 功能按钮 */}
+        <TopFunction />
+      </View>
       {/* 筛选过滤 */}
       <Filter />
       {jobStore.list.map((item, index) => (
         <JobItem key={index} info={item} />
       ))}
-    </View>
+      <View className={styles.bottomLoading}>
+        <van-loading type="spinner" color="#14B2B2" />
+      </View>
+    </ScrollView>
   );
 });
 
