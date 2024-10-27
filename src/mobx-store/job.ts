@@ -24,6 +24,10 @@ class JobStore {
   searchBarOpacity: number = 0.5;
   // 搜索条右边位置
   searchBarRight: number = 0;
+  // 是否显示定位过滤器
+  isShowFixedFilter: boolean = false;
+  topContenHeight: number = 0;
+  // 数据相关变量
   list: any[] = [];
   loading: boolean = false;
   refreshing: boolean = false;
@@ -39,10 +43,10 @@ class JobStore {
       const scrollTop = rect.scrollTop;
       // 控制header透明度
       runInAction(() => {
-        if (scrollTop < 5) {
-          this.headerOpacity = 0;
-          return;
-        }
+        // if (scrollTop < 5) {
+        //   this.headerOpacity = 0;
+        //   return;
+        // }
         if (scrollTop <= this.searchBarHeight) {
           this.headerOpacity = Math.min(scrollTop / this.searchBarHeight, 1);
           return;
@@ -94,6 +98,28 @@ class JobStore {
 
       runInAction(() => {
         this.searchBarHeight = rect.height;
+      });
+    }).exec();
+  }
+
+  // 设置过滤器，顶部区域高度
+  setTopContentHeight() {
+    Taro.createSelectorQuery().select('#job-list-topWrap').boundingClientRect((rect: any) => {
+      if (!rect) {
+        return;
+      }
+      runInAction(() => {
+        this.topContenHeight = rect.height;
+      });
+    }).exec();
+  }
+
+  // 设置过滤器的显隐
+  setFilterDisplay() {
+    Taro.createSelectorQuery().select('#job-list-scroll-view').scrollOffset((rect: any) => {
+      const scrollTop = rect.scrollTop;
+      runInAction(() => {
+        this.isShowFixedFilter = (this.topContenHeight - scrollTop) <= this.headerHeight;
       });
     }).exec();
   }

@@ -40,10 +40,10 @@ const Header: React.FC = observer(() => {
 });
 
 // 搜素栏
-interface ISearchBarProps {
+interface IHolderProps {
   isHolder?: boolean;
 }
-const SearchBar: React.FC<ISearchBarProps> = ({ isHolder = false }) => {
+const SearchBar: React.FC<IHolderProps> = ({ isHolder = false }) => {
   React.useEffect(() => {
     jobStore.setSearchBarSize();
   });
@@ -124,15 +124,51 @@ const TopFunction: React.FC = () => {
 };
 
 // 职位过滤器
-const Filter: React.FC = () => {
+const Filter: React.FC = observer(() => {
   return (
-    <View className={styles.filter}>
-      <Text className={styles.item + " " + styles.active}>前端开发工程师</Text>
-      <Text className={styles.item}>全栈工程师</Text>
-      <View className={styles.add}>+</View>
+    <View id="job-list-filter" className={styles.filterWrap}>
+      <View className={styles.filterKey}>
+        <Text className={styles.item + " " + styles.active}>
+          前端开发工程师
+        </Text>
+        <Text className={styles.item}>全栈工程师</Text>
+        <View className={styles.add}>+</View>
+      </View>
+      <View
+        className={styles.filterType}
+        style={{ display: jobStore.isShowFixedFilter ? "block" : "none" }}
+      >
+        <View>
+          <Text className={styles.leftTypeItem + " " + styles.active}>
+            推荐
+          </Text>
+          <Text className={styles.leftTypeItem}>附近</Text>
+        </View>
+        <View className={styles.rightType}>
+          <Text className={styles.rightTypeItem}>深圳</Text>
+          <Text className={styles.rightTypeItem}>筛选</Text>
+        </View>
+      </View>
     </View>
   );
-};
+});
+
+// 定位过滤器
+const FixedFilter: React.FC = observer(() => {
+  return (
+    <View
+      style={{
+        position: "fixed",
+        top: jobStore.headerHeight,
+        left: 0,
+        right: 0,
+        opacity: jobStore.isShowFixedFilter ? 1 : 0,
+      }}
+    >
+      <Filter />
+    </View>
+  );
+});
 
 const ScrollList: React.FC = observer(() => {
   // 滚动到底部加载更多
@@ -144,9 +180,11 @@ const ScrollList: React.FC = observer(() => {
   const handleScroll = () => {
     jobStore.setHeaderOpacity();
     jobStore.setSearchStyle();
+    jobStore.setFilterDisplay();
   };
 
   React.useEffect(() => {
+    jobStore.setTopContentHeight();
     jobStore.fetchData();
   }, []);
 
@@ -164,7 +202,7 @@ const ScrollList: React.FC = observer(() => {
       onScroll={handleScroll}
       onScrollEnd={handleScroll}
     >
-      <View className={styles.topWrap}>
+      <View className={styles.topWrap} id="job-list-topWrap">
         {/* 顶部导航 */}
         <View className={styles.holder}>
           <Header />
@@ -194,6 +232,7 @@ const Index: React.FC = () => {
       <ScrollList />
       <FixedHeader />
       <FixedSearchBar />
+      <FixedFilter />
     </View>
   );
 };
