@@ -16,7 +16,10 @@ const FixedHeader: React.FC = observer(() => {
   return (
     <View
       className={styles.fixed}
-      style={{ background: `rgba(255, 255, 255, ${jobStore.headerOpacity})` }}
+      style={{
+        background: `rgba(255, 255, 255, ${jobStore.headerOpacity})`,
+        // background: "grey",
+      }}
     >
       <Header />
     </View>
@@ -25,8 +28,11 @@ const FixedHeader: React.FC = observer(() => {
 
 // 头部内容
 const Header: React.FC = observer(() => {
+  React.useEffect(() => {
+    jobStore.setHeaderHeight();
+  });
   return (
-    <View className={styles.header}>
+    <View id="job-list-header">
       <View style={{ height: appStore.sysInfo.statusBarHeight }} />
       <View className={styles.title}>BOSS直聘</View>
     </View>
@@ -34,20 +40,55 @@ const Header: React.FC = observer(() => {
 });
 
 // 搜素栏
-const SearchBar: React.FC = () => {
+interface ISearchBarProps {
+  isHolder?: boolean;
+}
+const SearchBar: React.FC<ISearchBarProps> = ({ isHolder = false }) => {
   React.useEffect(() => {
-    jobStore.setSearchBarHeight();
+    jobStore.setSearchBarSize();
   });
 
   return (
-    <View className={styles.searchBar} id="job-list-search-bar">
-      <View className={styles.searchInput}>
+    <View
+      id="job-list-search-bar"
+      className={styles.searchBar}
+      style={{
+        opacity: isHolder ? 0 : 1,
+        // background: "#f00",
+      }}
+    >
+      <View
+        className={styles.searchInput}
+        style={{
+          background: `rgba(245, 245, 245, ${jobStore.searchBarOpacity})`,
+        }}
+      >
         <Icon className={styles.icon} type="search" size="14" />
         <Text>搜索职位名称、公司</Text>
       </View>
     </View>
   );
 };
+
+// 浮动在顶部的搜索栏
+const FixedSearchBar: React.FC = observer(() => {
+  React.useEffect(() => {
+    jobStore.setSearchStyle();
+  });
+  return (
+    <View
+      style={{
+        position: "fixed",
+        top: jobStore.headerHeight,
+        left: 0,
+        right: jobStore.searchBarRight + "px",
+        transform: `translate3d(0, -${jobStore.searchBarOffsetTop}px, 0)`,
+      }}
+    >
+      <SearchBar />
+    </View>
+  );
+});
 
 // 顶部功能模块按钮
 const TopFunction: React.FC = () => {
@@ -93,8 +134,7 @@ const Filter: React.FC = () => {
   );
 };
 
-// 页面组件
-const Index: React.FC = observer(() => {
+const ScrollList: React.FC = observer(() => {
   // 滚动到底部加载更多
   const loadMoreData = () => {
     console.log("load more data....");
@@ -103,6 +143,7 @@ const Index: React.FC = observer(() => {
 
   const handleScroll = () => {
     jobStore.setHeaderOpacity();
+    jobStore.setSearchStyle();
   };
 
   React.useEffect(() => {
@@ -110,43 +151,51 @@ const Index: React.FC = observer(() => {
   }, []);
 
   return (
-    <View className={styles.container}>
-      <ScrollView
-        id="job-list-scroll-view"
-        scrollY
-        scrollX={false}
-        enhanced={true}
-        showScrollbar={false}
-        scrollWithAnimation
-        className={styles.index}
-        lowerThreshold={60}
-        onScrollToLower={loadMoreData}
-        onScroll={handleScroll}
-        onScrollEnd={handleScroll}
-      >
-        <View className={styles.topWrap}>
-          {/* 顶部导航 */}
-          <View className={styles.holder}>
-            <Header />
-          </View>
-          {/* 搜索框 */}
-          <SearchBar />
-          {/* 功能按钮 */}
-          <TopFunction />
+    <ScrollView
+      id="job-list-scroll-view"
+      scrollY
+      scrollX={false}
+      enhanced={true}
+      showScrollbar={false}
+      scrollWithAnimation
+      className={styles.index}
+      lowerThreshold={60}
+      onScrollToLower={loadMoreData}
+      onScroll={handleScroll}
+      onScrollEnd={handleScroll}
+    >
+      <View className={styles.topWrap}>
+        {/* 顶部导航 */}
+        <View className={styles.holder}>
+          <Header />
         </View>
-        {/* 筛选过滤 */}
-        <Filter />
-        {jobStore.list.map((item, index) => (
-          <JobItem key={index} info={item} />
-        ))}
-        <View className={styles.bottomLoading}>
-          <van-loading type="spinner" color="#14B2B2" />
-        </View>
-      </ScrollView>
-
-      <FixedHeader />
-    </View>
+        {/* 搜索框 */}
+        <SearchBar isHolder={true} />
+        {/* 功能按钮 */}
+        <View style={{ height: "10rpx" }} />
+        <TopFunction />
+      </View>
+      {/* 筛选过滤 */}
+      <Filter />
+      {jobStore.list.map((item, index) => (
+        <JobItem key={index} info={item} />
+      ))}
+      <View className={styles.bottomLoading}>
+        <van-loading type="spinner" color="#14B2B2" />
+      </View>
+    </ScrollView>
   );
 });
 
-export default Index;
+// 页面组件
+const Index: React.FC = () => {
+  return (
+    <View className={styles.container}>
+      <ScrollList />
+      <FixedHeader />
+      <FixedSearchBar />
+    </View>
+  );
+};
+
+export default React.memo(Index);
