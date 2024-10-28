@@ -1,15 +1,24 @@
 import React from "react";
+import Taro from "@tarojs/taro";
 import { View, Text, Image } from "@tarojs/components";
 import { IJobInfo } from "../../../types/job";
 import LabelList from "../label-list";
 import styles from "./index.module.less";
+import jobDetailStore from "../../mobx-store/job-detail";
 
 interface IJobItemProps {
   info: IJobInfo;
 }
 const JobItem: React.FC<IJobItemProps> = ({ info }) => {
+  const handleTap = () => {
+    jobDetailStore.setCurrentJob(info);
+    Taro.navigateTo({
+      url: "/pages/job/detail/index", // 目标页面的路径
+    });
+  };
+
   return (
-    <View className={styles.wrap}>
+    <View className={styles.wrap} onTap={handleTap}>
       <View className={styles.itemTop}>
         <Text className={styles.jobName}>{info.jobName}</Text>
         <Text className={styles.salaryDesc}>{info.salaryDesc}</Text>
@@ -40,4 +49,4 @@ const JobItem: React.FC<IJobItemProps> = ({ info }) => {
   );
 };
 
-export default JobItem;
+export default React.memo(JobItem);

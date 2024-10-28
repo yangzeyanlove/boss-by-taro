@@ -4,12 +4,14 @@ import styles from "./index.module.less";
 
 interface ILabelListProps {
   data: string[];
+  itemStyle?: {};
+  style?: {};
 }
-const LabelList: React.FC<ILabelListProps> = ({ data }) => {
+const LabelList: React.FC<ILabelListProps> = ({ data, itemStyle, style }) => {
   return (
-    <View className={styles.wrap}>
+    <View className={styles.wrap} style={style}>
       {data.map((item, index) => (
-        <Text className={styles.item} key={index}>
+        <Text className={styles.item} key={index} style={itemStyle}>
           {item}
         </Text>
       ))}

@@ -1,0 +1,140 @@
+@import url('../../../styles/variables.less');
+
+.container {
+  position: relative;
+  padding: 0 25rpx;
+}
+.bottomWrap {
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bottomBtn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 25rpx 36rpx;
+  border-top: 1rpx solid #eee;
+  text-align: center;
+  font-size: 24rpx;
+  color: #5E5E5E;
+  .icon {
+    margin-right: 30rpx;
+  }
+  .btnWrap{
+    flex: 1;
+    font-weight: 500;
+    button{
+      border-radius: 10rpx;
+    }
+  }
+}
+.topInfo {
+  padding-top: 20rpx;
+}
+.topInfoFirst {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .jobName{
+    flex: 1;
+    font-size: 50rpx;
+    font-weight: 500;
+  }
+  .salaryDesc{
+    flex-shrink: 1;
+    color: @primary-color;
+    font-size: 40rpx;
+  }
+}
+
+.topInfoSecond {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+}
+
+.bossInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10rpx;
+}
+
+.bossInfoLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .avatar, .logo {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+    margin-right: 20rpx;
+  }
+  .logo {
+    border-radius: 0;
+  }
+  .bossName{
+    font-weight: 500;
+  }
+  .subTitle{
+    font-size: 26rpx;
+    margin-top: 10rpx;
+    color: #333;
+  }
+  .thirdTitle {
+    font-size: 24rpx;
+    color: #B8B8B8;
+    margin-top: 10rpx;
+  }
+}
+
+.blockTitle {
+  font-weight: 500;
+  font-size: 36rpx;
+}
+.content{
+  font-size: 28rpx;
+  color: #555;
+  padding: 30rpx 0;
+  line-height: 48rpx;
+  position: relative;
+  .more{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    color: @primary-color;
+    padding-top: 100rpx;
+    background: linear-gradient(to top, #FFFFFF, rgba(255, 255, 255, 0)); /* 从白色到完全透明 */
+  }
+}
+.mapWrap{
+  position: relative;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  .position{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24rpx;
+    background: #fff;
+    padding: 10rpx 15rpx;
+    border-radius: 20rpx;
+  }
+}
+.others{
+  padding: 15rpx 0 30rpx 0;
+  color: '#666';
+  font-size: 26rpx;
+  line-height: 48rpx;
+  color: #888;
+}
