@@ -7,7 +7,8 @@ export const themeConfig = {
 // 应用相关配置
 export default defineAppConfig({
   pages: [
-    'pages/index/index',
+    'pages/job/index',
+    'pages/job/detail/index',
     'pages/position/index',
     'pages/chat/index',
     'pages/my/index',
@@ -15,7 +16,7 @@ export default defineAppConfig({
   tabBar: {
     list: [
       {
-        pagePath: 'pages/index/index',
+        pagePath: 'pages/job/index',
         text: '找工作',
         iconPath: 'assets/images/work.png', // 替换为你的图标类名
         selectedIconPath: 'assets/images/work-on.png',
@@ -53,6 +54,7 @@ export default defineAppConfig({
   // 按需注入和用时注入，组件
   usingComponents: {
     'van-button': 'components/vant-weapp/button/index',
+    'van-icon': 'components/vant-weapp/icon/index',
     "van-loading": "components/vant-weapp/loading/index"
   },
   lazyCodeLoading: 'requiredComponents',

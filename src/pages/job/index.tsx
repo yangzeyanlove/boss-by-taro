@@ -28,9 +28,6 @@ const FixedHeader: React.FC = observer(() => {
 
 // 头部内容
 const Header: React.FC = observer(() => {
-  React.useEffect(() => {
-    jobStore.setHeaderHeight();
-  });
   return (
     <View id="job-list-header">
       <View style={{ height: appStore.sysInfo.statusBarHeight }} />
@@ -44,23 +41,19 @@ interface IHolderProps {
   isHolder?: boolean;
 }
 const SearchBar: React.FC<IHolderProps> = ({ isHolder = false }) => {
-  React.useEffect(() => {
-    jobStore.setSearchBarSize();
-  });
-
   return (
     <View
       id="job-list-search-bar"
       className={styles.searchBar}
       style={{
         opacity: isHolder ? 0 : 1,
-        // background: "#f00",
       }}
     >
       <View
         className={styles.searchInput}
         style={{
           background: `rgba(245, 245, 245, ${jobStore.searchBarOpacity})`,
+          height: appStore.capsuleButton.height,
         }}
       >
         <Icon className={styles.icon} type="search" size="14" />
@@ -72,17 +65,15 @@ const SearchBar: React.FC<IHolderProps> = ({ isHolder = false }) => {
 
 // 浮动在顶部的搜索栏
 const FixedSearchBar: React.FC = observer(() => {
-  React.useEffect(() => {
-    jobStore.setSearchStyle();
-  });
   return (
     <View
       style={{
         position: "fixed",
-        top: jobStore.headerHeight,
+        top: jobStore.searchBarOffsetTop,
         left: 0,
         right: jobStore.searchBarRight + "px",
-        transform: `translate3d(0, -${jobStore.searchBarOffsetTop}px, 0)`,
+        // transform: `translate3d(0, -${jobStore.searchBarOffsetTop}px, 0)`,
+        transform: `translate3d(0, 0, 0)`,
       }}
     >
       <SearchBar />
@@ -184,7 +175,6 @@ const ScrollList: React.FC = observer(() => {
   };
 
   React.useEffect(() => {
-    jobStore.setTopContentHeight();
     jobStore.fetchData();
   }, []);
 
@@ -227,6 +217,12 @@ const ScrollList: React.FC = observer(() => {
 
 // 页面组件
 const Index: React.FC = () => {
+  React.useEffect(() => {
+    jobStore.setHeaderHeight();
+    jobStore.setSearchBarSize();
+    jobStore.setTopContentHeight();
+    jobStore.setSearchStyle();
+  });
   return (
     <View className={styles.container}>
       <ScrollList />

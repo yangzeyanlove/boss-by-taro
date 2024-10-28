@@ -19,6 +19,10 @@ class AppStore {
       // Do something when catch error
     }
   }
+
+  getSafeBottom() {
+    return this.sysInfo.screenHeight - this.sysInfo.safeArea.bottom;
+  }
 }
 
 export default new AppStore();

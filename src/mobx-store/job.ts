@@ -73,7 +73,14 @@ class JobStore {
           this.searchBarRight = offsetRight;
         }
         // this.searchBarOffsetTop = scrollTop;
+        if (scrollTop <= this.searchBarHeight && this.searchBarOffsetTop < appStore.sysInfo.statusBarHeight) {
+          this.searchBarOffsetTop = this.headerHeight - scrollTop;
+        } else {
+          this.searchBarOffsetTop = appStore.sysInfo.statusBarHeight;
+        }
       });
+
+      console.log(scrollTop, this.searchBarHeight, this.searchBarOffsetTop, appStore.sysInfo.statusBarHeight);
     }).exec();
   }
 
