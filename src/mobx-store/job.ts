@@ -79,8 +79,6 @@ class JobStore {
           this.searchBarOffsetTop = appStore.sysInfo.statusBarHeight;
         }
       });
-
-      console.log(scrollTop, this.searchBarHeight, this.searchBarOffsetTop, appStore.sysInfo.statusBarHeight);
     }).exec();
   }
 

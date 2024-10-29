@@ -6,6 +6,41 @@
   "description": "模仿boss",
   "glyphs": [
     {
+      "icon_id": "500680",
+      "name": "心_heart256",
+      "font_class": "xinheart256",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "2802329",
+      "name": "简历",
+      "font_class": "jianli",
+      "unicode": "e6c5",
+      "unicode_decimal": 59077
+    },
+    {
+      "icon_id": "19954235",
+      "name": "购买参团",
+      "font_class": "goumaicantuan",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "21703364",
+      "name": "附件",
+      "font_class": "wenjian1",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "31670252",
+      "name": "选中 叶子",
+      "font_class": "a-xuanzhongyezi",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
       "icon_id": "7568832",
       "name": "24gf-bubbleDots4",
       "font_class": "24gf-bubbleDots4",
