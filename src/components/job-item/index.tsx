@@ -3,7 +3,7 @@ import Taro from "@tarojs/taro";
 import { View, Text, Image } from "@tarojs/components";
 import { IJobInfo } from "../../../types/job";
 import LabelList from "../label-list";
-import styles from "./index.module.less";
+import styles from "./index.module.scss";
 import jobDetailStore from "../../mobx-store/job-detail";
 
 interface IJobItemProps {

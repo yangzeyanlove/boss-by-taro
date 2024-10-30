@@ -1,4 +1,4 @@
-@import '../../styles/variables.less';
+@import '../../styles/variables.scss';
 
 .wrap {
   background-color: #fff;
@@ -22,7 +22,7 @@
   }
   .salaryDesc {
     flex-shrink: 1;
-    color: @primary-color;
+    color: $primary-color;
     font-size: 32rpx;
     font-weight: 500,
   }
