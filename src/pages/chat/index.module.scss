@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  height: 100vh; /* 使容器充满整个视口高度 */
+  width: 100vw;
+}
+
+.headerWrap {
+  flex-shrink: 0;
+  flex: 0 0 auto;
+}
+
+.tabTitle{
+  font-size: 36rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #858585;
+  overflow-x: scroll; /* 启用水平滚动 */
+  white-space: nowrap; /* 防止内容换行 */
+  // border-bottom: 1rpx solid #F0F0F0;
+  padding: 0 20rpx;
+
+  /* 隐藏Web端滚动条 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 或者使用 */
+  &::-webkit-scrollbar {
+    width: 0; /* 对于垂直滚动条 */
+    height: 0; /* 对于水平滚动条 */
+  }
+
+  .item {
+    margin: 0 25rpx;
+  }
+  .active {
+    color: #141414;
+    font-size: 42rpx;
+  }
+}
+
+.tabWrap{
+  flex: 1;
+  overflow: hidden;
+}

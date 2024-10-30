@@ -1,6 +1,23 @@
 @import 'variables.scss';
 
+page {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
 .at-button--primary{
   background-color: $primary-color !important;
   border-color: $primary-color !important;
+}
+
+// 聊天栏目样式重写
+.chat-container {
+  .at-tabs__header {
+    display: none;
+  }
+  .at-tabs__body, .at-tabs-pane{
+    height: 100%;
+    overflow: hidden;
+  }
 }

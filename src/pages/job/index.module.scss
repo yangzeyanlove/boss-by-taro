@@ -60,6 +60,16 @@
     padding: 24rpx 0 18rpx 0;
     border-radius: 25rpx;
     border: 1rpx solid #fff;
+    /* 隐藏Web端滚动条 */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 或者使用 */
+    &::-webkit-scrollbar {
+      width: 0; /* 对于垂直滚动条 */
+      height: 0; /* 对于水平滚动条 */
+    }
   }
   .item {
     display: inline-block;
