@@ -50,19 +50,20 @@
 }
 
 .topFunction {
-  white-space: nowrap;
-  overflow: auto;
-  border-radius: 25rpx;
-  border: 1rpx solid #fff;
-  margin: 0 15rpx 0 15rpx;
-  padding: 24rpx 0 18rpx 0;
-  background: linear-gradient(to bottom, #DBF0EE, #F9FDFE);
-  &::-webkit-scrollbar {
-    display: none; /* 隐藏滚动条 */
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0 15rpx;
+  .topFuncWrap {
+    white-space: nowrap;
+    overflow-x: auto;
+    background: linear-gradient(to bottom, #DBF0EE, #F9FDFE);
+    padding: 24rpx 0 18rpx 0;
+    border-radius: 25rpx;
+    border: 1rpx solid #fff;
   }
   .item {
     display: inline-block;
-    width: 150rpx;
+    width: 160rpx;
     font-size: 24rpx;
     text-align: center;
     color: #323838;
@@ -75,8 +76,8 @@
     // background-image: url('../../assets/images/job/1.png');
     background-size: cover;
     background-position: center center;
-    width: 100rpx;
-    height: 100rpx;
+    width: 90rpx;
+    height: 90rpx;
     margin: 0 auto;
     &.img1 {
       background-image: url('../../assets/images/job/1.png');
@@ -93,6 +94,9 @@
     &.img5 {
       background-image: url('../../assets/images/job/5.png');
     }
+  }
+  .name {
+    margin-top: 10rpx;
   }
 }
 

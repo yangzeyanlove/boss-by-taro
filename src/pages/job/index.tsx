@@ -103,14 +103,16 @@ const TopFunction: React.FC = () => {
   ];
   return (
     <View className={styles.topFunction}>
-      {arr.map((item, index) => (
-        <View key={index} className={styles.item}>
-          <View
-            className={`${styles.funcIcom} ${styles["img" + (index + 1)]}`}
-          />
-          <View>{item.name}</View>
-        </View>
-      ))}
+      <View className={styles.topFuncWrap}>
+        {arr.map((item, index) => (
+          <View key={index} className={styles.item}>
+            <View
+              className={`${styles.funcIcom} ${styles["img" + (index + 1)]}`}
+            />
+            <View className={styles.name}>{item.name}</View>
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
