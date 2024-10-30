@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
 
 // 响应拦截
 axiosInstance.interceptors.response.use(
-  <T>(response: AxiosResponse<T>) => {
+  (response: AxiosResponse) => {
     // 对响应数据做点什么
     return response.data; // 直接返回数据
   },
