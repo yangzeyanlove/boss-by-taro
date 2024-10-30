@@ -1,5 +1,5 @@
 
-@import '../../styles/variables.less';
+@import '../../styles/variables.scss';
 
 .container{
   display: flex;
@@ -115,7 +115,7 @@
       border-radius: 10rpx;
       width: 38rpx;
       height: 8rpx;
-      background-color: @primary-color;
+      background-color: $primary-color;
       bottom: -25rpx;
       left: 50%;
       transform: translateX(-50%);

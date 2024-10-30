@@ -2,9 +2,10 @@ import React from "react";
 import { observer } from "mobx-react";
 import { View, Text, Icon, ScrollView } from "@tarojs/components";
 import JobItem from "../../components/job-item";
-import styles from "./index.module.less";
+import styles from "./index.module.scss";
 import jobStore from "../../mobx-store/job";
 import appStore from "../../mobx-store/app";
+import Loading from "../../components/loading";
 
 // const data = Array.from({ length: 100 }, (_, index) => ({
 //   id: index + 1, // 生成从1开始的唯一ID
@@ -209,7 +210,7 @@ const ScrollList: React.FC = observer(() => {
         <JobItem key={index} info={item} />
       ))}
       <View className={styles.bottomLoading}>
-        <van-loading type="spinner" color="#14B2B2" />
+        <Loading />
       </View>
     </ScrollView>
   );

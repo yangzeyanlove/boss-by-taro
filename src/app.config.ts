@@ -1,8 +1,5 @@
 // 主题配置
-export const themeConfig = {
-  primaryColor: '#14B2B2',
-  color: '#B8B8B8',
-};
+import themeConfig from './config/theme';
 
 // 应用相关配置
 export default defineAppConfig({
@@ -52,10 +49,6 @@ export default defineAppConfig({
     navigationBarTextStyle: 'black'
   },
   // 按需注入和用时注入，组件
-  usingComponents: {
-    'van-button': 'components/vant-weapp/button/index',
-    'van-icon': 'components/vant-weapp/icon/index',
-    "van-loading": "components/vant-weapp/loading/index"
-  },
+  usingComponents: {},
   lazyCodeLoading: 'requiredComponents',
 });

@@ -8,12 +8,13 @@ import {
   RichText,
   Map,
 } from "@tarojs/components";
-import styles from "./index.module.less";
+import styles from "./index.module.scss";
 import appStore from "../../../mobx-store/app";
 import jobDetailStore from "../../../mobx-store/job-detail";
 import { JoinString } from "../../../common/utils";
 import Divider from "../../../components/divider";
 import LabelList from "../../../components/label-list";
+import { AtIcon, AtButton } from "taro-ui";
 
 definePageConfig({
   navigationBarTitleText: "职位详情",
@@ -32,17 +33,15 @@ const ButtomCtrl = ({ isHolder = false }) => {
     >
       <View className={styles.bottomBtn}>
         <View className={styles.icon}>
-          <van-icon name="share-o" size="20px" />
+          <AtIcon value="share-2" size="20" />
           <View>分享</View>
         </View>
         <View className={styles.icon}>
-          <van-icon name="star-o" size="20px" />
+          <AtIcon value="star" size="20" />
           <View>收藏</View>
         </View>
         <View className={styles.btnWrap}>
-          <van-button block type="primary">
-            立即沟通
-          </van-button>
+          <AtButton type="primary">立即沟通</AtButton>
         </View>
       </View>
     </View>
@@ -71,15 +70,15 @@ const TopInfo = observer(() => {
         </Text>
       </View>
       <View className={styles.topInfoSecond}>
-        <van-icon name="location-o" />
+        <AtIcon value="map-pin" size="16" />
         <View style={{ width: "4px" }} />
         <Text>{getLocation("·")}</Text>
         <View style={{ width: "18px" }} />
-        <van-icon name="gem-o" />
+        <AtIcon value="shopping-bag-2" size="16" />
         <View style={{ width: "4px" }} />
         <Text>{jobDetailStore.currentJob.jobExperience}</Text>
         <View style={{ width: "18px" }} />
-        <van-icon name="points" />
+        <AtIcon value="sketch" size="16" />
         <View style={{ width: "4px" }} />
         <Text>{jobDetailStore.currentJob.jobDegree}</Text>
       </View>
@@ -105,7 +104,7 @@ const BossInfo = observer(() => {
           <View className={styles.thirdTitle}>今日活跃</View>
         </View>
       </View>
-      <van-icon name="arrow" />
+      <AtIcon value="chevron-right" />
     </View>
   );
 });
@@ -172,7 +171,7 @@ const CompanyInfo = observer(() => {
             </View>
           </View>
         </View>
-        <van-icon name="arrow" />
+        <AtIcon value="chevron-right" />
       </View>
 
       <View className={styles.mapWrap}>
@@ -224,7 +223,7 @@ const OtherInfo = () => {
   return (
     <View>
       <View className={styles.blockTitle}>
-        <van-icon name="fire" size={20} color="#306DFA" />
+        <AtIcon value="lock" size="20" color="#306DFA" />
         BOSS安全提示
       </View>
       <View className={styles.others}>

@@ -1,9 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { View, Text, ScrollView, Image, RichText } from "@tarojs/components";
-import styles from "./index.module.less";
+import styles from "./index.module.scss";
 import appStore from "../../mobx-store/app";
 import myStore from "../../mobx-store/my";
+import { AtIcon, AtButton } from "taro-ui";
 
 const Header: React.FC = observer(() => {
   return (
@@ -33,7 +34,7 @@ const UserInfo: React.FC = () => {
         <View className={styles.name}>杨先生</View>
         <View className={styles.tips}>
           <Text>简历评分99分，建议优化 </Text>
-          <van-icon name="underway-o" size={14} color="#5E5E5E" />
+          <AtIcon value="clock" size="14" color="#5E5E5E" />
         </View>
       </View>
     </View>
@@ -65,9 +66,9 @@ const ZhaoPin: React.FC = () => {
       <View className={styles.title}>我要招聘</View>
       <View>千万招聘者的选择</View>
       <View className={styles.ctrl}>
-        <van-button type="primary" size="small" round>
+        <AtButton type="primary" size="small" circle>
           去招聘
-        </van-button>
+        </AtButton>
       </View>
     </View>
   );
@@ -153,39 +154,39 @@ const OtherFunc = () => {
   const data = [
     {
       label: "面试刷题",
-      icon: "records-o",
+      icon: "bullet-list",
     },
     {
       label: "简历刷新",
-      icon: "replay",
+      icon: "repeat-play",
     },
     {
       label: "求职工具",
-      icon: "link-o",
+      icon: "settings",
     },
     {
       label: "无障碍求职",
-      icon: "like-o",
+      icon: "heart",
     },
     {
       label: "通知与提醒",
-      icon: "volume-o",
+      icon: "bell",
     },
     {
       label: "账号与安全",
-      icon: "shield-o",
+      icon: "lock",
     },
     {
       label: "隐私保护",
-      icon: "bulb-o",
+      icon: "alert-circle",
     },
     {
       label: "隐私政策",
-      icon: "label-o",
+      icon: "numbered-list",
     },
     {
       label: "意见反馈",
-      icon: "question-o",
+      icon: "help",
     },
   ];
   return (
@@ -194,7 +195,7 @@ const OtherFunc = () => {
       <View className={styles.otherFuncList}>
         {data.map((item, index) => (
           <View key={index} className={styles.otherFuncItem}>
-            <van-icon name={item.icon} size={28} color="#5E5E5E" />
+            <AtIcon value={item.icon} size="28" color="#5E5E5E" />
             <View className={styles.otherFuncLabel}>{item.label}</View>
           </View>
         ))}
@@ -242,9 +243,7 @@ const Index: React.FC = () => {
 
         <View className={styles.logout}>
           <View>
-            <van-button block type="default" size="normal">
-              退出登录
-            </van-button>
+            <AtButton size="normal">退出登录</AtButton>
           </View>
           <View style={{ height: "20px" }} />
           <RichText

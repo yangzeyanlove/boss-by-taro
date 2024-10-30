@@ -1,4 +1,4 @@
-@import url('../../../styles/variables.less');
+@import '../../../styles/variables.scss';
 
 .container {
   position: relative;
@@ -44,7 +44,7 @@
   }
   .salaryDesc{
     flex-shrink: 1;
-    color: @primary-color;
+    color: $primary-color;
     font-size: 40rpx;
   }
 }
@@ -110,7 +110,7 @@
     right: 0;
     bottom: 0;
     text-align: center;
-    color: @primary-color;
+    color: $primary-color;
     padding-top: 100rpx;
     background: linear-gradient(to top, #FFFFFF, rgba(255, 255, 255, 0)); /* 从白色到完全透明 */
   }
