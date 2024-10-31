@@ -1,7 +1,7 @@
 // 看过我
 import React from "react";
 import { observer } from "mobx-react";
-import { View, ScrollView, Image } from "@tarojs/components";
+import { View, ScrollView } from "@tarojs/components";
 import styles from "./seen-me.module.scss";
 import jobStore from "../../mobx-store/job";
 import JobItem from "../../components/job-item";
