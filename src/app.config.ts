@@ -4,10 +4,10 @@ import themeConfig from './config/theme';
 // 应用相关配置
 export default defineAppConfig({
   pages: [
-    'pages/position/index',
+    // 'pages/position/index',
     'pages/job/index',
     'pages/job/detail/index',
-    // 'pages/position/index',
+    'pages/position/index',
     'pages/chat/index',
     'pages/my/index',
   ],
